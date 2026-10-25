@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff1f5">
+  <meta name="description" content="Маленькое приглашение на свидание, созданное с теплом специально для Моли.">
+  <title>Для Моли — маленькое приглашение ♡</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fff8fa;
+      --paper: #fffdfd;
+      --pink-50: #fff1f5;
+      --pink-100: #ffe3ec;
+      --pink-200: #f8c4d5;
+      --pink-300: #ee9db9;
+      --pink-500: #d96d96;
+      --pink-700: #a8446c;
+      --berry: #77344f;
+      --ink: #4a2937;
+      --muted: #8f7180;
+      --line: #f1dce4;
+      --shadow: 0 26px 80px rgba(154, 73, 105, .12);
+      --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #e69bb7; outline-offset: 3px; }
+    .site { min-height: 100vh; overflow: hidden; position: relative; background:
+      radial-gradient(ellipse at 4% 8%, rgba(255, 220, 232, .78), transparent 28rem),
+      radial-gradient(ellipse at 95% 45%, rgba(255, 231, 238, .8), transparent 30rem),
+      var(--bg); }
+    .grain { position: absolute; inset: 0; pointer-events: none; opacity: .15; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E"); }
+    .nav, .hero, .memory, .choose, footer { position: relative; z-index: 1; }
+    .nav { width: min(1160px, calc(100% - 48px)); margin: auto; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(168,68,108,.13); }
+    .brand { display: flex; gap: 10px; align-items: center; color: var(--berry); font-size: 12px; font-weight: 750; letter-spacing: .18em; text-transform: uppercase; }
+    .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid var(--pink-300); color: var(--pink-700); border-radius: 50%; font-size: 15px; }
+    .nav-note { color: var(--muted); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+    .music-toggle { display: inline-flex; gap: 8px; align-items: center; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.75); color: var(--berry); font-size: 12px; transition: .2s ease; }
+    .music-toggle:hover { transform: translateY(-2px); border-color: var(--pink-300); }
+    .music-icon { display: inline-block; width: 14px; text-align: center; }
+    .hero { width: min(1160px, calc(100% - 48px)); margin: auto; padding: 70px 0 92px; display: grid; grid-template-columns: 1.03fr .97fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--pink-700); font-size: 10px; font-weight: 750; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--pink-300); }
+    h1 { margin: 22px 0 22px; font-family: var(--serif); font-size: clamp(58px, 7.1vw, 100px); font-weight: 500; letter-spacing: -.055em; line-height: .9; color: var(--berry); }
+    h1 span { display: block; color: var(--pink-500); font-style: italic; font-weight: 400; }
+    .hero-text { max-width: 460px; color: var(--muted); font-size: 15px; line-height: 1.95; }
+    .hero-text strong { color: var(--berry); font-weight: 650; }
+    .signoff { margin-top: 26px; display: flex; align-items: center; gap: 12px; color: var(--berry); font-family: var(--serif); font-size: 25px; font-style: italic; }
+    .signoff .heart { color: var(--pink-500); font-family: var(--sans); font-size: 17px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 30px; }
+    .primary-btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, #e68bab, #c95883); color: #fff; border: 0; border-radius: 999px; padding: 16px 23px; font-weight: 700; font-size: 13px; box-shadow: 0 12px 28px rgba(201,88,131,.24); transition: transform .2s, box-shadow .2s; }
+    .primary-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(201,88,131,.31); }
+    .quiet-note { font-size: 11px; color: #a78996; }
+    .visual { min-height: 520px; display: grid; place-items: center; position: relative; }
+    .halo { position: absolute; width: min(100%, 460px); aspect-ratio: 1; border: 1px solid #f3cbd9; border-radius: 50%; }
+    .halo::before, .halo::after { content: ""; position: absolute; border: 1px solid rgba(243,203,217,.62); border-radius: 50%; inset: 22px; }
+    .halo::after { inset: 48px; }
+    .portrait-card { position: relative; width: min(82%, 350px); height: 440px; border: 10px solid rgba(255,255,255,.82); border-radius: 190px 190px 24px 24px; background: linear-gradient(155deg, #ffedf3 0%, #f8cfdd 45%, #e99ab6 100%); box-shadow: var(--shadow); overflow: hidden; transform: rotate(2deg); }
+    .portrait-card::before { content: ""; position: absolute; width: 280px; height: 280px; border: 1px solid rgba(255,255,255,.68); border-radius: 50%; top: 45px; left: 50%; transform: translateX(-50%); }
+    .portrait-card::after { content: ""; position: absolute; width: 215px; height: 300px; border: 1px solid rgba(255,255,255,.48); border-radius: 50%; top: 28px; left: 50%; transform: translateX(-50%) rotate(32deg); }
+    .flower-art { position: absolute; z-index: 1; inset: 48px 0 auto; text-align: center; font-size: 142px; filter: drop-shadow(0 12px 14px rgba(147,58,89,.16)); animation: float 5s ease-in-out infinite; }
+    .little-sprig { position: absolute; z-index: 1; font-size: 46px; color: white; opacity: .9; }
+    .sprig-a { top: 90px; left: 34px; transform: rotate(-22deg); }
+    .sprig-b { top: 170px; right: 28px; transform: rotate(23deg); }
+    .portrait-caption { position: absolute; z-index: 2; bottom: 30px; inset-inline: 12px; text-align: center; color: #fff; text-shadow: 0 2px 16px rgba(126,43,75,.25); font-family: var(--serif); font-size: 31px; font-style: italic; }
+    .sticker { position: absolute; z-index: 3; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.92); box-shadow: 0 12px 32px rgba(154,73,105,.13); color: var(--pink-700); }
+    .sticker-one { top: 50px; right: 7%; width: 72px; height: 72px; font-size: 30px; animation: float 4s ease-in-out infinite reverse; }
+    .sticker-two { bottom: 40px; left: 5%; width: 62px; height: 62px; font-family: var(--serif); font-size: 22px; font-style: italic; transform: rotate(-12deg); }
+    .tiny-label { position: absolute; bottom: 3px; right: 5%; font-size: 10px; text-transform: uppercase; letter-spacing: .17em; color: #b27d94; }
+    .memory { background: linear-gradient(180deg, rgba(255,236,243,.8), rgba(255,246,249,.96)); border-block: 1px solid #f5dce5; padding: 72px 24px 76px; }
+    .section-wrap { width: min(920px, 100%); margin: auto; }
+    .section-head { text-align: center; margin-bottom: 34px; }
+    .section-head .eyebrow { justify-content: center; }
+    h2 { font-family: var(--serif); color: var(--berry); font-size: clamp(40px, 5.4vw, 64px); font-weight: 500; letter-spacing: -.045em; margin: 16px 0 11px; line-height: 1; }
+    .section-sub { color: var(--muted); line-height: 1.8; font-size: 14px; max-width: 510px; margin: auto; }
+    .memory-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 38px; }
+    .memory-item { background: rgba(255,255,255,.78); border: 1px solid #f3dce5; padding: 22px 18px; border-radius: 20px; text-align: center; }
+    .memory-item .icon { width: 46px; height: 46px; margin: 0 auto 13px; display: grid; place-items: center; border-radius: 16px; background: #fff0f5; font-size: 21px; }
+    .memory-item h3 { font-size: 13px; margin: 0 0 8px; color: var(--berry); }
+    .memory-item p { font-size: 12px; line-height: 1.7; margin: 0; color: var(--muted); }
+    .choose { padding: 82px 24px 90px; }
+    .form-card { width: min(790px, 100%); margin: 0 auto; background: rgba(255,255,255,.88); border: 1px solid #f1d8e2; border-radius: 28px; box-shadow: var(--shadow); padding: clamp(22px, 5vw, 48px); position: relative; }
+    .form-card::before { content: "♡"; position: absolute; top: 18px; right: 24px; color: #f5d4e0; font-size: 40px; font-family: var(--serif); }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 23px 18px; }
+    .field { display: flex; flex-direction: column; gap: 9px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label, .field-label { font-size: 10px; text-transform: uppercase; font-weight: 750; letter-spacing: .13em; color: #a46e85; }
+    .field input, .field textarea { width: 100%; border: 1px solid #efd9e2; background: #fffafd; padding: 15px 16px; border-radius: 13px; color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s; }
+    .field input:focus, .field textarea:focus { border-color: #df8eae; box-shadow: 0 0 0 4px #fce8ef; }
+    .field textarea { resize: vertical; min-height: 88px; }
+    .choices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .choice { position: relative; }
+    .choice input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer; }
+    .choice span { display: flex; min-height: 104px; align-items: center; justify-content: center; flex-direction: column; gap: 9px; text-align: center; padding: 12px 7px; border: 1px solid #efd9e2; border-radius: 16px; background: #fffafd; color: var(--muted); font-size: 11px; transition: .2s; }
+    .choice span b { font-size: 24px; font-weight: 400; }
+    .choice input:checked + span { border-color: #d96d96; background: #fff0f5; box-shadow: inset 0 0 0 1px #d96d96; color: var(--berry); }
+    .choice input:focus-visible + span { outline: 3px solid #e69bb7; outline-offset: 3px; }
+    .form-submit { width: 100%; margin-top: 28px; border: 0; border-radius: 999px; padding: 17px 22px; background: linear-gradient(110deg, #e78daf, #ce5e89); box-shadow: 0 12px 28px rgba(201,88,131,.22); color: white; font-size: 13px; font-weight: 750; transition: .2s; }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(201,88,131,.3); }
+    .fine-print { max-width: 520px; margin: 14px auto 0; color: #a48b97; font-size: 11px; text-align: center; line-height: 1.7; }
+    .result { display: none; padding: 15px 0 0; text-align: center; }
+    .result.show { display: block; animation: rise .5s ease both; }
+    .result .result-heart { font-size: 46px; }
+    .result h3 { font: 500 42px var(--serif); color: var(--berry); margin: 12px 0; }
+    .result p { color: var(--muted); line-height: 1.8; font-size: 14px; }
+    .result .form-submit { max-width: 440px; }
+    .back-btn { border: 0; background: transparent; color: #a56b83; font-size: 12px; padding: 12px; text-decoration: underline; text-underline-offset: 4px; }
+    footer { width: min(1160px, calc(100% - 48px)); margin: auto; padding: 25px 0 34px; display: flex; justify-content: space-between; gap: 15px; color: #b18b9b; font-size: 10px; letter-spacing: .11em; text-transform: uppercase; }
+    .floating-hearts { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .floating-hearts span { position: absolute; bottom: -50px; color: #e9aac0; opacity: .32; animation: drift linear infinite; }
+    .floating-hearts span:nth-child(1) { left: 8%; animation-duration: 18s; font-size: 18px; }
+    .floating-hearts span:nth-child(2) { left: 23%; animation-duration: 22s; animation-delay: -8s; font-size: 13px; }
+    .floating-hearts span:nth-child(3) { left: 77%; animation-duration: 19s; animation-delay: -4s; font-size: 22px; }
+    .floating-hearts span:nth-child(4) { left: 91%; animation-duration: 24s; animation-delay: -11s; font-size: 15px; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+    @keyframes drift { from { transform: translateY(0) rotate(0deg); } to { transform: translateY(-120vh) rotate(35deg); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; padding-top: 56px; gap: 18px; }
+      .hero-copy { max-width: 650px; }
+      h1 { font-size: clamp(64px, 13vw, 94px); }
+      .visual { min-height: 470px; }
+      .portrait-card { height: 405px; width: min(78%, 330px); }
+      .memory-row { gap: 10px; }
+    }
+    @media (max-width: 580px) {
+      .nav { width: calc(100% - 34px); padding: 17px 0; }
+      .nav-note { display: none; }
+      .music-toggle { padding: 9px 11px; font-size: 11px; }
+      .hero { width: calc(100% - 38px); padding: 50px 0 60px; }
+      h1 { font-size: clamp(60px, 17vw, 82px); }
+      .hero-text { font-size: 14px; }
+      .visual { min-height: 405px; margin-top: 8px; }
+      .halo { width: 100%; }
+      .portrait-card { width: min(80%, 300px); height: 365px; }
+      .flower-art { font-size: 118px; }
+      .portrait-caption { font-size: 27px; }
+      .sticker-one { right: 1%; top: 38px; width: 60px; height: 60px; }
+      .sticker-two { left: 1%; bottom: 26px; }
+      .memory { padding: 58px 19px; }
+      .memory-row { grid-template-columns: 1fr; max-width: 360px; margin: 30px auto 0; }
+      .memory-item { display: grid; grid-template-columns: 46px 1fr; gap: 0 13px; text-align: left; padding: 16px; }
+      .memory-item .icon { grid-row: span 2; margin: 0; }
+      .memory-item h3 { align-self: end; }
+      .memory-item p { align-self: start; }
+      .choose { padding: 62px 17px 66px; }
+      .field-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .choices { grid-template-columns: repeat(2, 1fr); }
+      .choice span { min-height: 88px; }
+      .form-card { border-radius: 22px; }
+      footer { width: calc(100% - 36px); flex-direction: column; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="site">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="floating-hearts" aria-hidden="true"><span>♡</span><span>✧</span><span>♥</span><span>♡</span></div>
+    <header class="nav">
+      <div class="brand"><span class="brand-mark">♡</span> Sanzhar <span style="color:#d96d96">×</span> Mоля</div>
+      <div class="nav-note">A little something just for you</div>
+      <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false"><span class="music-icon" id="musicIcon">♫</span><span id="musicLabel">Включить музыку</span></button>
+    </header>
+
+    <section class="hero" aria-labelledby="mainTitle">
+      <div class="hero-copy">
+        <div class="eyebrow">Маленькое приглашение · только для тебя</div>
+        <h1 id="mainTitle">Моля,<span>это для тебя.</span></h1>
+        <p class="hero-text">Я придумал кое-что особенное. Хочу провести с тобой вечер, <strong>никуда не спешить, много улыбаться</strong> и создать ещё одно тёплое воспоминание. А день и время нашей встречи выберешь ты. ♡</p>
+        <div class="signoff">Твой Санжар <span class="heart">♥</span></div>
+        <div class="hero-actions">
+          <button class="primary-btn" type="button" id="startBtn">Выбрать наше свидание <span aria-hidden="true">↗</span></button>
+          <span class="quiet-note">для одного очень особенного человека</span>
+        </div>
+      </div>
+      <div class="visual" aria-label="Романтическая иллюстрация с цветком">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="portrait-card">
+          <div class="flower-art" aria-hidden="true">🌸</div>
+          <div class="little-sprig sprig-a" aria-hidden="true">✧</div>
+          <div class="little-sprig sprig-b" aria-hidden="true">♡</div>
+          <div class="portrait-caption">just you & me</div>
+        </div>
+        <div class="sticker sticker-one" aria-hidden="true">♡</div>
+        <div class="sticker sticker-two" aria-hidden="true">for M.</div>
+        <div class="tiny-label">made with love · 001</div>
+      </div>
+    </section>
+
+    <section class="memory">
+      <div class="section-wrap">
+        <div class="section-head">
+          <div class="eyebrow">Никаких сложных планов</div>
+          <h2>Главное — вместе</h2>
+          <p class="section-sub">Пусть это будет наш маленький день: с разговорами обо всём, любимыми вкусностями и моментами, которые хочется запомнить.</p>
+        </div>
+        <div class="memory-row">
+          <article class="memory-item"><div class="icon">☕</div><h3>Уют и разговоры</h3><p>Найти приятное место и говорить обо всём на свете.</p></article>
+          <article class="memory-item"><div class="icon">🌷</div><h3>Маленькие радости</h3><p>Улыбки, прогулка и что-нибудь приятное именно для тебя.</p></article>
+          <article class="memory-item"><div class="icon">✨</div><h3>Наш момент</h3><p>Без спешки и лишних планов — просто провести время вдвоём.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="choose" id="choose" aria-labelledby="chooseTitle">
+      <div class="section-wrap">
+        <div class="section-head">
+          <div class="eyebrow">Теперь твой выбор</div>
+          <h2 id="chooseTitle">Когда увидимся, Моля?</h2>
+          <p class="section-sub">Выбери день, удобное время и настроение нашей встречи. Остальное я возьму на себя. 💗</p>
+        </div>
+        <div class="form-card">
+          <form id="dateForm">
+            <div class="field-grid">
+              <div class="field">
+                <label for="date">Дата встречи</label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div class="field">
+                <label for="time">Удобное время</label>
+                <input id="time" name="time" type="time" value="18:00" required>
+              </div>
+              <div class="field full">
+                <span class="field-label">Как проведём время?</span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="plan" value="Кафе и прогулка" checked><span><b>☕</b>Кафе и прогулка</span></label>
+                  <label class="choice"><input type="radio" name="plan" value="Романтический ужин"><span><b>🕯️</b>Ужин</span></label>
+                  <label class="choice"><input type="radio" name="plan" value="Вечерняя прогулка"><span><b>🌙</b>Прогулка</span></label>
+                  <label class="choice"><input type="radio" name="plan" value="Сюрприз"><span><b>🎁</b>Сюрприз</span></label>
+                </div>
+              </div>
+              <div class="field full">
+                <label for="note">Пожелание для Санжара · необязательно</label>
+                <textarea id="note" name="note" maxlength="240" placeholder="Например: хочу место с огоньками или очень вкусный десерт…"></textarea>
+              </div>
+            </div>
+            <button class="form-submit" type="submit">Отправить мой выбор Санжару в WhatsApp&nbsp; ↗</button>
+            <p class="fine-print">WhatsApp откроется с готовым сообщением. Тебе останется нажать «Отправить», и Санжар узнает, когда ты хочешь встретиться. 💌</p>
+          </form>
+          <div class="result" id="result" aria-live="polite">
+            <div class="result-heart">💗</div>
+            <h3>Это будет наш день!</h3>
+            <p id="summary"></p>
+            <button class="form-submit" type="button" id="sendAgain">Продолжить в WhatsApp ↗</button>
+            <br><button class="back-btn" type="button" id="editChoice">Изменить мой выбор</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><span>Сделано с теплом · специально для Моли</span><span>Только ты и я <span style="color:#d96d96">♥</span></span></footer>
+  </main>
+
+  <audio id="bgMusic" src="mus/music.mp3" loop preload="auto" autoplay></audio>
+  <script>
+    // WhatsApp chat recipient, international format without + or spaces.
+    const whatsappNumber = '77067127068';
+    const music = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicLabel = document.getElementById('musicLabel');
+    const musicIcon = document.getElementById('musicIcon');
+    let messageToSend = '';
+
+    function reflectMusicState(isPlaying) {
+      musicToggle.setAttribute('aria-pressed', String(isPlaying));
+      musicLabel.textContent = isPlaying ? 'Музыка играет' : 'Включить музыку';
+      musicIcon.textContent = isPlaying ? '♫' : '♪';
+    }
+    async function tryPlayMusic() {
+      try {
+        await music.play();
+        reflectMusicState(true);
+      } catch (_) {
+        // Most browsers require a direct user gesture before allowing audible autoplay.
+        reflectMusicState(false);
+      }
+    }
+    musicToggle.addEventListener('click', async () => {
+      if (music.paused) {
+        await tryPlayMusic();
+      } else {
+        music.pause();
+        reflectMusicState(false);
+      }
+    });
+    music.addEventListener('play', () => reflectMusicState(true));
+    music.addEventListener('pause', () => reflectMusicState(false));
+    music.addEventListener('error', () => {
+      musicLabel.textContent = 'Добавь mus/music.mp3';
+      musicToggle.title = 'Положи аудиофайл в папку mus и назови его music.mp3';
+    });
+    // Attempt autoplay immediately, then retry after the user's first interaction if blocked.
+    tryPlayMusic();
+    const unlockMusic = () => {
+      if (music.paused) tryPlayMusic();
+      window.removeEventListener('pointerdown', unlockMusic);
+      window.removeEventListener('keydown', unlockMusic);
+      window.removeEventListener('touchstart', unlockMusic);
+    };
+    window.addEventListener('pointerdown', unlockMusic, { once: true, passive: true });
+    window.addEventListener('keydown', unlockMusic, { once: true });
+    window.addEventListener('touchstart', unlockMusic, { once: true, passive: true });
+
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    dateInput.min = localToday;
+
+    function formatDate(value) {
+      if (!value) return '';
+      return new Date(value + 'T12:00:00').toLocaleDateString('ru-RU', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      });
+    }
+    function openWhatsApp() {
+      if (!messageToSend) return;
+      const url = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(messageToSend);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    const form = document.getElementById('dateForm');
+    const result = document.getElementById('result');
+    const summary = document.getElementById('summary');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const date = data.get('date');
+      const time = data.get('time');
+      const plan = data.get('plan');
+      const note = (data.get('note') || '').trim();
+      messageToSend = `Привет, Санжар! 💌 Я выбираю наше свидание!\n📅 Дата: ${formatDate(date)}\n🕒 Время: ${time}\n✨ Как проведём время: ${plan}${note ? '\n💬 Моё пожелание: ' + note : ''}\n\nЖду нашей встречи ❤️`;
+      summary.textContent = `Ты выбрала ${formatDate(date)} в ${time}. План: «${plan}». Нажми ниже, чтобы отправить свой ответ Санжару в WhatsApp.`;
+      form.hidden = true;
+      result.classList.add('show');
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    document.getElementById('sendAgain').addEventListener('click', openWhatsApp);
+    document.getElementById('editChoice').addEventListener('click', () => {
+      result.classList.remove('show');
+      form.hidden = false;
+      document.getElementById('date').focus();
+    });
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('choose').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
